@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-use Yajra\DataTables\EloquentDataTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,34 +14,9 @@ use Yajra\DataTables\EloquentDataTable;
 |
 */
 
-Route::get('/', function () {
-    if (request()->ajax()) {
-        return (new EloquentDataTable(User::query()))
-            // Enable scout search for eloquent model
-            ->enableScoutSearch(User::class)
-            // Add filters to scout search
-            ->scoutFilter(function (string $keyword) {
-                // return 'region IN ["Germany", "France"]'; // Meilisearch
-                // return 'region:Germany OR region:France'; // Algolia
-            })
-            // Add filters to default search
-            ->filter(function (Builder $query, bool $scoutSearched) {
-                if (! $scoutSearched) {
-                    // Filter already added for scout search
-                    // $query->whereIn('region', ['Germany', 'France']);
-                }
+Route::redirect('/', '/users');
 
-                // filter all email that start with a when search is not empty
-                if (request('search.value')) {
-                    $query->where('email', 'like', 'a%');
-                }
-            }, true)
-            ->setRowId('id')
-            ->toJson();
-    }
-
-    return view('welcome');
-});
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
 Auth::routes();
 
