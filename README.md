@@ -1,5 +1,7 @@
 # Laravel DataTables Scout Integration POC
 
+A proof of concept for integrating Laravel Scout with DataTables via PR https://github.com/yajra/laravel-datatables/pull/3082
+
 ## Setup
 
 1. Clone the repository
