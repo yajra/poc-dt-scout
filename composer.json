@@ -13,8 +13,8 @@
         "laravel/scout": "^10.5",
         "laravel/tinker": "^2.8",
         "meilisearch/meilisearch-php": "^1.4",
-        "yajra/laravel-datatables-editor": "^1.25",
-        "yajra/laravel-datatables-oracle": "dev-scout"
+        "yajra/laravel-datatables": "^10.1",
+        "yajra/laravel-oci8": "^10.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
